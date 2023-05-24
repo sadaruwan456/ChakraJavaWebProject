@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2020 2:41:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.LoginHistory" table="login_history" catalog="chakradb" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admin" class="hibernate.Admin" fetch="select">
+            <column name="admin_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="logStatus" class="hibernate.LogStatus" fetch="select">
+            <column name="log_status_id" not-null="true" />
+        </many-to-one>
+        <property name="dateTime" type="timestamp">
+            <column name="date_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

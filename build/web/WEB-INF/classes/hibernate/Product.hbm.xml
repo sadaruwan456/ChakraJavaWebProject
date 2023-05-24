@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2020 2:41:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Product" table="product" catalog="chakradb" optimistic-lock="version">
+        <id name="PId" type="java.lang.Integer">
+            <column name="p_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="discount" class="hibernate.Discount" fetch="select">
+            <column name="discount_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="material" class="hibernate.Material" fetch="select">
+            <column name="material_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="neck" class="hibernate.Neck" fetch="select">
+            <column name="neck_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="occasion" class="hibernate.Occasion" fetch="select">
+            <column name="occasion_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="printPattern" class="hibernate.PrintPattern" fetch="select">
+            <column name="print_pattern_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="returnType" class="hibernate.ReturnType" fetch="select">
+            <column name="return_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sleeve" class="hibernate.Sleeve" fetch="select">
+            <column name="sleeve_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="spOffers" class="hibernate.SpOffers" fetch="select">
+            <column name="sp_offers_id" not-null="true" />
+        </many-to-one>
+        <property name="PName" type="string">
+            <column name="p_name" length="45" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="picPath" type="string">
+            <column name="pic_path" length="65535" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+        <property name="cost" type="java.lang.Double">
+            <column name="cost" precision="22" scale="0" />
+        </property>
+        <property name="sizes" type="string">
+            <column name="sizes" length="45" />
+        </property>
+        <property name="color" type="string">
+            <column name="color" length="45" />
+        </property>
+        <property name="rating" type="java.lang.Integer">
+            <column name="rating" />
+        </property>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Product_p_id" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Cart" />
+        </set>
+        <set name="wishLists" table="wish_list" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Product_p_id" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.WishList" />
+        </set>
+        <set name="invoiceItems" table="invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Product_p_id" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.InvoiceItem" />
+        </set>
+        <set name="latestProductses" table="latest_products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Product_p_id" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.LatestProducts" />
+        </set>
+    </class>
+</hibernate-mapping>

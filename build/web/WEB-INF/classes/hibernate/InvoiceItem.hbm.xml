@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2020 2:41:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.InvoiceItem" table="invoice_item" catalog="chakradb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="delivery" class="hibernate.Delivery" fetch="select">
+            <column name="delivery_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invoice" class="hibernate.Invoice" fetch="select">
+            <column name="invoice_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="hibernate.Product" fetch="select">
+            <column name="Product_p_id" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+    </class>
+</hibernate-mapping>

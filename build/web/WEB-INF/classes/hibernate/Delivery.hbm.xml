@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2020 2:41:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Delivery" table="delivery" catalog="chakradb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="DStatus" class="hibernate.DStatus" fetch="select">
+            <column name="d_status_id" not-null="true" />
+        </many-to-one>
+        <property name="fee" type="java.lang.Double">
+            <column name="fee" precision="22" scale="0" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <set name="invoiceItems" table="invoice_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="delivery_id" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.InvoiceItem" />
+        </set>
+    </class>
+</hibernate-mapping>
